@@ -1,23 +1,17 @@
-const mysqlConnection = require("./mysqlConnection");
+const mysqlPool = require("./mysqlConnection");
 
 function signUp(res, userId, userPassword) {
-  console.log(userId, userPassword, "!!!");
-  mysqlConnection.connect();
+  mysqlPool.getConnection((err, connection) => {
+    connection.query(
+      `INSERT INTO user VALUES ("${userId}", "${userPassword}")`,
+      (err, results, fields) => {
+        if (err) res.send(`failure :${err}`);
+        else res.redirect("/");
+      }
+    );
 
-  mysqlConnection.query(
-    `INSERT INTO user VALUES ("${userId}", "${userPassword}")`,
-    (err, rows, fields) => {
-      if (!err) res.send("success");
-      else res.send(err);
-    }
-  );
-
-  mysqlConnection.query("SELECT * FROM user", (err, rows, fields) => {
-    if (!err) console.log("The solution is: ", rows);
-    else console.log("Error while performing Query.", err);
+    connection.release();
   });
-
-  mysqlConnection.end();
 }
 
 module.exports = signUp;
