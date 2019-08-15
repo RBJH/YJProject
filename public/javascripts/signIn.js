@@ -1,4 +1,4 @@
-const mysqlPool = require("./mysqlConnection");
+const mysqlPool = require("./mysqlPool");
 
 function signIn(req, res, username, password) {
   mysqlPool.getConnection((err, connection) => {

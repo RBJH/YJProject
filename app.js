@@ -1,3 +1,4 @@
+// 데이터베이스 사용법 고려(풀?, 트랜젝션?, 폴더 위치?...)
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");

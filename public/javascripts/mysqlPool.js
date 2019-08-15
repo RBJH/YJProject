@@ -10,6 +10,6 @@ const mysqlConfig = require(path.join(
   "mysqlConfig"
 ));
 
-const mysqlConnection = mysql.createConnection(mysqlConfig);
+const mysqlPool = mysql.createPool(mysqlConfig);
 
-module.exports = mysqlConnection;
+module.exports = mysqlPool;
