@@ -7,6 +7,13 @@ const flash = require("connect-flash");
 const passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
 
+const sessConfig = require(path.join(
+  __dirname,
+  "private",
+  "configs",
+  "sessConfig"
+));
+
 const app = express();
 
 app.listen(3000);
@@ -18,17 +25,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.use(
-  session({
-    key: "test",
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000
-    }
-  })
-);
+app.use(session(sessConfig));
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -1,10 +1,11 @@
 // 유효성 검사 실패 시 로직 처리 필요
 // 메일 인증 검토
-// 데이터베이스 설계 고려(가입일?, salt 테이블?...)
+// 데이터베이스 설계 고려(이름 한글?, 가입일?, salt 테이블?...)
 const validator = require("validator");
-const crypto = require("crypto");
 
+const encrypt = require("./encrypt");
 const mysqlPool = require("./mysqlPool");
+
 // 유효성 검사
 function isValidate(name, email, password, passwordConfirm) {
   let result = true;
@@ -31,14 +32,9 @@ function isValidate(name, email, password, passwordConfirm) {
 // 비밀번호 암호화
 function encryptPassword(password) {
   const result = [];
-  // 랜덤 salt 생성
-  let buf = crypto.randomBytes(64);
-
-  const salt = buf.toString("hex");
-  // 암호화 pbkdf2
-  buf = crypto.pbkdf2Sync(password, salt, 100000, 64, "sha512");
-
-  const encrypted = buf.toString("base64");
+  // salt
+  const salt = encrypt.getSalt();
+  const encrypted = encrypt.getEncrypted(password, salt);
 
   result.push(salt);
   result.push(encrypted);

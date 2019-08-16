@@ -6,16 +6,16 @@
   </head>
   <body>
     <h1>index - YJProto</h1>
-    <% if(session.email) { %>
+    <% if(session.signInId) { %>
     <form action="/signout" method="GET">
-      <button type="submit">Sign Out</button>
+      <button type="submit">로그아웃</button>
     </form>
     <% } else { %>
     <form action="/signin" method="GET">
-      <button type="submit">Sign In</button>
+      <button type="submit">로그인</button>
     </form>
     <form action="/signup" method="GET">
-      <button type="submit">Sign Up</button>
+      <button type="submit">가입하기</button>
     </form>
     <% } %>
   </body>
