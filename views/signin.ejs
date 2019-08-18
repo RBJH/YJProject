@@ -53,6 +53,11 @@
 					</div>
 
 					<div class="text-center p-t-136">
+						<a class="txt2" onclick="goToCheck()">
+							I don't know my Password
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+						<br>
 						<a class="txt2" onclick="goToSignup()">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
@@ -66,6 +71,9 @@
 	<script>
 		function goToSignup(){
 			location.href = "/signup";
+		}
+		function goToCheck(){
+			location.href = "/identity"
 		}
 	</script>
 	

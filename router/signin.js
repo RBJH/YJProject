@@ -26,9 +26,9 @@ router.post('/', function(req, res, next){
                 console.log("Sign in success");
                 
                 req.session.user = {
-                    userID : userID
+                    userID : userID,
+                    userName : rows[0]['userName']
                 }
-                console.log("session : " + req.session.user.userID);
                 res.redirect('/');
             }
         }

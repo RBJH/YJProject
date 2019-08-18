@@ -25,29 +25,19 @@
     
                     <form class="login100-form validate-form" method="POST">
                         <span class="login100-form-title">
-                            Member Join!!
+                            비밀번호 변경
                         </span>
-                        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                            <input class="input100" type="text" name="userID" placeholder="ID" minlength="8" maxlength="12" required>
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </span>
-                            
-                            <% if(err == 'DUPLICATE_ERR') { %>
-                                <script type="text/javascript"> alert("이미 존재하는 아이디입니다."); </script>
-                            <% } %>
-                        </div>
-                        <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="password" name="userPW" placeholder="Password" minlength="8" maxlength="15" required>
+
+                        <div class="wrap-input100 validate-input" data-validate = "Name is required">
+                            <input class="input100" type="text" name="userName" placeholder="Name" maxlength="20" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
                             </span>
                         </div>
-                        
-                        <div class="wrap-input100 validate-input" data-validate = "Name is required">
-                            <input class="input100" type="text" name="userName" placeholder="Name" maxlength="10" required>
+
+                        <div class="wrap-input100 validate-input" data-validate = "ID is required">
+                            <input class="input100" type="text" name="userID" placeholder="ID" maxlength="20" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -56,15 +46,15 @@
 
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn">
-                                Sign Up
+                                변경
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <% if(err == 'NETWORK_ERR') { %>
-            <script type="text/javascript"> alert("네트워크 상태를 확인해주세요."); </script>
+        <% if(err == "no_data") { %>
+            <script type="text/javascript"> alert("존재하지 않는 회원입니다."); </script>
         <% } %>
 </body>
 </html>

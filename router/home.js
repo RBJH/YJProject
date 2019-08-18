@@ -6,7 +6,7 @@ router.get('/', function(req, res){
     if(req.session.user == undefined){
         res.redirect("/signin");
     }else{
-        res.render('home.ejs');
+        res.render('home.ejs', {userName : req.session.user.userName});
     }
 });
 

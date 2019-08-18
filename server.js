@@ -11,6 +11,7 @@ mysql.connect();
 var signupRouter = require('./router/signup');
 var signinRouter = require('./router/signin');
 var homeRouter = require('./router/home');
+var identityRouter = require('./router/identity');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
+app.use('/identity', identityRouter);
 app.use('/', homeRouter);
 
 

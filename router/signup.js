@@ -10,8 +10,9 @@ router.post('/', function(req, res, next){
    
     var userID = req.body['userID'];
     var userPW = req.body['userPW'];
+    var userName = req.body['userName'];
     
-    mysql.query("INSERT INTO user VALUES (?,?);", [userID, userPW], function(err,  rows, fields){
+    mysql.query("INSERT INTO user VALUES (?,?,?);", [userID, userPW, userName], function(err,  rows, fields){
         
         if(err){
             if(err.code == 'ER_DUP_ENTRY'){
@@ -20,8 +21,8 @@ router.post('/', function(req, res, next){
                 res.render('signup.ejs', {err : 'NETWORK_ERR'});
             }
         } else {
-            res.send('success');
             console.log("Sign up Success");
+            res.redirect('/signin');
         }
     });
 });
