@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('../mysql');
+var mysql = require('../../mysql');
 
 router.get('/', function(req, res){
     res.render('signup.ejs', {err : 'NONE'});
@@ -22,7 +22,7 @@ router.post('/', function(req, res, next){
             }
         } else {
             console.log("Sign up Success");
-            res.redirect('/signin');
+            res.redirect('/auth/signin');
         }
     });
 });

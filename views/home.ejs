@@ -9,7 +9,11 @@
             User name is <%= userName %>
         </h2>
 
-        <form action="/signout" method="POST">
+        <form action="/board" method="GET">
+            <button>게시판 가기</button>
+        </form>
+
+        <form action="/auth/signout" method="POST">
             <button>Sign Out</button>
         </form>
         
