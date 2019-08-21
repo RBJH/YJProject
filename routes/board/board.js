@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('../../mysql');
+var moment = require('moment');
 
 router.get('/', function(req, res){
     
@@ -8,7 +9,7 @@ router.get('/', function(req, res){
         if(err){
             console.log(err);
         }else{
-            res.render('board.ejs', {posts : rows});
+            res.render('board.ejs', {posts : rows, moment : moment});
         }
     });
 });

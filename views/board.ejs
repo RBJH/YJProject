@@ -39,22 +39,22 @@
 					    <td><%= posts[i].postId%></td>
                         <td><a href="board/read/<%= posts[i].postId%>"><%= posts[i].title%></a></td>
                         <td><%= posts[i].writer%></td>
-                        <td><%= posts[i].writeDate%></td>
+                        <td><%= moment(posts[i].writeDate).format('YYYYMMDD')%></td>
                         <td><%= posts[i].views%></td>
                         <td><%= posts[i].recommend%></td>
                     </tr>
                     <%
                     }%>
                 </table>			
-
+				<footer>
 					<div class="text-center p-t-136">
-						<a class="txt2">
-							I don't know my Password
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
 						
 					</div>
-				
+					<form action="/board/write" method="GET">
+						<button>글쓰기</button>
+					</form>
+				</footer>
+
 			</div>
 		</div>
 	</div>
