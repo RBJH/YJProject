@@ -40,25 +40,50 @@ router.get('/:postId', function(req, res){
     
 });
 
-router.get('/recommend', function(req, res){
+router.get('/recommend/:postId', function(req, res){
     const userId = req.session.user.userId;
     const postId = req.params.postId;
-    console.log(req.body + "//" + req.params);
-    /*
+
+    
     mysql.beginTransaction(function(err){
         if(err){
             console.log("transaction err");
         }else{
-            mysql.query("insert into board values(?,?)", [postId]);
+            mysql.query("insert into recommend values(?,?)", [postId, userId], function(err){
+                
+                if(err){
+                    if(err.code = "ER_DUP_ENTRY"){
+                        //이미 추천한 글
+                        console.log("dup recommend");
+                        
+                        mysql.commit(function(err){
+                            if(err){
+                                console.log("commit err : " + err);
+                                mysql.rollback();
+                            }
+                            res.redirect('/board/read/'+ postId);
+                        });
+                        
+                    }
+                }else{
+                    mysql.query("update board set recommend = recommend+1 where postId = ?", postId, function(err){
+                        if(err){
+                            console.log("fail to recommend : " + err.code);
+                            mysql.rollback();
+                        }
+                        mysql.commit(function(err){
+                            if(err){
+                                console.log("commit err : " + err);
+                                mysql.rollback();
+                            }
+                            res.redirect('/board/read/'+ postId);
+                        });
+                    });
+                }
+                
+            });
         }
     });
-   mysql.query("update board set recommend = recommend +1 where postId = ?", postId, function(err, rows, fields){
-       if(err){
-           console.log(err);
-       }else{
-           res.redirect('/board/read/' + postId);
-       }
-   });*/
 });
 
 module.exports = router;

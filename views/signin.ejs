@@ -29,7 +29,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="userID" placeholder="ID" required>
+						<input class="input100" type="text" name="userId" placeholder="ID" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -37,15 +37,15 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="userPW" placeholder="Password" required>
+						<input class="input100" type="password" name="userPw" placeholder="Password" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					<% if(validateErr == true){ %>
-						<div> 존재하지 않는 ID 또는 잘못된 비밀번호입니다. </div>
-					<% } %>
+					<% try{%>
+						<%= msg%>
+					<%}catch(err){} %>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login

@@ -3,14 +3,14 @@ var router = express.Router();
 var mysql = require('../../mysql');
 
 router.get('/', function(req, res){
-    res.render('setpw.ejs', {userID : req.session.temp.userID, userName : req.session.temp.userName});
+    res.render('setpw.ejs', {userId : req.session.temp.userId, userName : req.session.temp.userName});
 });
 
 router.post('/', function(req, res, next){
-    var userID = req.session.temp.userID;
-    var userPW = req.body.userPW;
+    var userId = req.session.temp.userId;
+    var userPw = req.body.userPw;
 
-    mysql.query("update user set userPW = ? where userID = ?;", [userPW, userID], function(err, rows, fields){
+    mysql.query("update user set userPW = ? where userID = ?;", [userPw, userId], function(err, rows, fields){
         if(err){
             res.send("ㅇ?");
         }else{

@@ -7,10 +7,10 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res, next){
-    var userID = req.body.userID;
+    var userId = req.body.userId;
     var userName = req.body.userName;
 
-    mysql.query("select * from user where userID = ? and userName = ?", [userID, userName], function(err, rows, fields){
+    mysql.query("select * from user where userID = ? and userName = ?", [userId, userName], function(err, rows, fields){
         if(err){
             console.log(err);
         }else{
@@ -18,7 +18,7 @@ router.post('/', function(req, res, next){
                 res.render('identity.ejs', {err : "no_data"});
             }else{
                 req.session.temp = {
-                    userID : rows[0].userID,
+                    userId : rows[0].userId,
                     userName : rows[0].userName
                 }
                 res.redirect('/auth/setPw');

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YJProject</title>
+    </head>
+    <body>
+        <h1>This is chatting room, <%=userInfo.userName%></h1>
+        <div id="chatWindow"></div>
+        
+        <input id="chatMsg" type="text" name="<%=userInfo.userName%>">
+        <button onclick="sendMsg()" onkeypress="sendMsg()"> 버튼 </button>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/chatClient.js"></script>
+        
+    </body>
+</html>

@@ -13,9 +13,32 @@
             <button>게시판 가기</button>
         </form>
 
+        <form action="/chat" method="GET">
+            <button>채팅방 입장</button>
+        </form>
+
         <form action="/auth/signout" method="POST">
             <button>Sign Out</button>
         </form>
         
+        <div>
+        <table>
+            <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>조회수</td>
+                <td>추천</td>
+            </tr>
+            <% for(var i=0; i<posts.length; i++){%>
+            <tr>
+                <td><%= posts[i].postId%></td>
+                <td><a href="board/read/<%= posts[i].postId%>"><%= posts[i].title%></a></td>
+                <td><%= posts[i].views%></td>
+                <td><%= posts[i].recommend%></td>
+            </tr>
+            <%
+            }%>
+        </table>	
+        </div>
     </body>
 </html>

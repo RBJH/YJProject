@@ -1,9 +1,8 @@
 //미사용 스크립트
+/*
 (function ($) {
-    "use strict";
     
-    /*==================================================================
-    [ Validate ]*/
+    [ Validate ]
     var input = $('.validate-input .input100');
 
     $('.validate-form').on('submit',function(){
@@ -53,4 +52,4 @@
     
     
 
-})(jQuery);
+})(jQuery);*/

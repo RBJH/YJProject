@@ -8,11 +8,11 @@ router.get('/', function(req, res){
 
 router.post('/', function(req, res, next){
    
-    var userID = req.body['userID'];
-    var userPW = req.body['userPW'];
-    var userName = req.body['userName'];
+    var userId = req.body.userId;
+    var userPw = req.body.userPw;
+    var userName = req.body.userName;
     
-    mysql.query("INSERT INTO user VALUES (?,?,?);", [userID, userPW, userName], function(err,  rows, fields){
+    mysql.query("INSERT INTO user VALUES (?,?,?);", [userId, userPw, userName], function(err,  rows, fields){
         
         if(err){
             if(err.code == 'ER_DUP_ENTRY'){

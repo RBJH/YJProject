@@ -3,11 +3,16 @@ var router = express.Router();
 var mysql = require('../mysql');
 
 router.get('/', function(req, res){
-        res.render('home.ejs', {userName : req.session.user.userName});
-});
+        if(req.session.user == undefined){
+                res.redirect('/');
+        }else{
 
-router.post('/', function(req, res, next){
-   
+                const query = "select * from bestPost order by recommend desc";
+                mysql.query(query, function(err, rows, fields){
+                        res.render('home.ejs', {userName : req.session.user.userName, posts : rows});
+                });
+        }
+
 });
 
 module.exports = router;
