@@ -11,15 +11,34 @@ window.onload = function(){
     socket.emit('join', data);
 }
 
+let cnt = 0;
+
 socket.on("msgToClient", function(data){
     
-    var msg = document.createTextNode(data);
-    var br = document.createElement('br');
+    createChat("div", data);
+    // var msg = document.createTextNode(data);
+    // var br = document.createElement('br');
 
-    document.getElementById('chatWindow').appendChild(msg);
-    document.getElementById('chatWindow').appendChild(br);
+    // document.getElementById('chatWindow').appendChild(msg);
+    // document.getElementById('chatWindow').appendChild(br);
     
 });
+
+//
+function createChat(tagName, msgContent) {
+    const div = document.createElement(tagName);
+
+    div.className = `chat${cnt++}`;
+
+    var msg = document.createTextNode(msgContent);
+    var br = document.createElement('br');
+
+    div.appendChild(msg);
+    div.appendChild(br);
+
+    document.getElementById('chatWindow').appendChild(div);
+}
+//
 
 
 function sendMsg(){
